@@ -44,7 +44,8 @@ export function WasteHistoryModal({
                 {waste.versionHistory.map((history) => (
                   <TableRow key={history.id}>
                     <TableCell>{new Date(history.created_at).toLocaleString()}</TableCell>
-                    <TableCell>{history.changedBy.name}</TableCell>
+                    <TableCell>{history.changedBy ? history.changedBy.name : '-'}</TableCell>
+
                     <TableCell><Badge variant="secondary">{history.status.replace(/_/g, ' ')}</Badge></TableCell>
                     <TableCell>{history.placementLocation}</TableCell>
                     <TableCell className="break-words">{history.changeReason}</TableCell>
