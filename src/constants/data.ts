@@ -35,6 +35,14 @@ export const navItems: NavItem[] = [
     shortcut: ['w', 'w'],
     isActive: false,
     items: []
+  },
+  {
+    title: 'Orders',
+    url: '/dashboard/orders',
+    icon: 'product',
+    shortcut: ['w', 'w'],
+    isActive: false,
+    items: []
   }
 
   // All other items are commented out or removed.

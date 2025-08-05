@@ -75,3 +75,37 @@ export interface GetAllChemicalsVars {
     endDate?: string;
   };
 }
+
+export const REVERT_CHEMICAL = gql`
+  mutation RevertToPreviousVersion($input: RevertChemicalInput!) {
+    revertChemical(input: $input) {
+      id
+      updated_at
+      updatedBy {
+        id
+        name
+      }
+      activeVersion {
+        id
+        name
+        status
+        changeReason
+        created_at
+      }
+    }
+  }
+`;
+
+// ... (keep existing interfaces)
+
+// --- ADD INTERFACES FOR THE NEW MUTATION ---
+export interface RevertChemicalData {
+  revertChemical: Chemical;
+}
+
+export interface RevertChemicalVars {
+  input: {
+    chemicalId: string;
+    versionId: string;
+  };
+}
