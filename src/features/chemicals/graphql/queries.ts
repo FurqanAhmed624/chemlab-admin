@@ -71,7 +71,7 @@ export interface GetAllChemicalsVars {
   page?: number;
   limit?: number;
   filters?: {
-    startDate?: string; // ISO Date String
-    endDate?: string;   // ISO Date String
+    startDate?: string;
+    endDate?: string;
   };
 }
