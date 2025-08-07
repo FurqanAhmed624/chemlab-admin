@@ -154,6 +154,7 @@ export default function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -163,7 +164,6 @@ export default function AppSidebar() {
                   size='lg'
                   className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                 >
-                  {/*/!* 2. Use the mock user object *!/*/}
                   {/*{mockUser && (*/}
                   {/*  <UserAvatarProfile*/}
                   {/*    className='h-8 w-8 rounded-lg'*/}

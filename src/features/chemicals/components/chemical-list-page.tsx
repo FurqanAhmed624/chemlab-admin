@@ -248,7 +248,6 @@ export default function ChemicalListPage() {
       </div>
 
       {pageCount > 0 && <DataTablePagination table={table} />}
-      batay
       <ChemicalHistoryModal
         chemical={selectedChemical}
         onClose={() => setSelectedChemical(null)}
