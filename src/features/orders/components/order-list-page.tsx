@@ -5,14 +5,12 @@ import { useQuery, useMutation } from '@apollo/client';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { toast } from 'sonner';
 
-// UI Component Imports
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DataTablePagination } from '@/components/ui/table/data-table-pagination';
 
-// Local project-specific imports
 import { Order, orderStatusEnum } from '../data/schema';
 import { OrderColumn, columns } from './columns';
 import { GET_ALL_ORDERS, UPDATE_ORDER_STATUS, GetAllOrdersData, GetAllOrdersVars, UpdateOrderData, UpdateOrderVars } from '../graphql/queries';
@@ -74,9 +72,6 @@ function UpdateStatusDialog({
 }
 
 
-// =======================================================================
-// === OrderListPage Main Component ===
-// =======================================================================
 export default function OrderListPage() {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const [orderToUpdate, setOrderToUpdate] = useState<Order | null>(null);

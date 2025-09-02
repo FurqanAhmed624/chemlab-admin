@@ -1,16 +1,14 @@
+// app/dashboard/reports/page.tsx
+
 import PageContainer from '@/components/layout/page-container';
-import { buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
-import OrderListPage from '@/features/orders/components/order-list-page';
-import { cn } from '@/lib/utils';
-import { IconPlus } from '@tabler/icons-react';
-import Link from 'next/link';
+import ReportListPage from '@/features/reports/components/report-list-page';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Dashboard: Chemical Orders'
+  title: 'Dashboard: Chemical Reports'
 };
 
 export default async function Page() {
@@ -19,23 +17,17 @@ export default async function Page() {
       <div className='flex flex-1 flex-col space-y-4'>
         <div className='flex items-start justify-between'>
           <Heading
-            title='Chemical Orders'
-            description='Manage and track all chemical orders.'
+            title='Chemical Reports'
+            description='Review and manage chemical reports from users.'
           />
-          <Link
-            href='/dashboard/orders/new'
-            className={cn(buttonVariants(), 'text-xs md:text-sm')}
-          >
-            <IconPlus className='mr-2 h-4 w-4' /> Create Order
-          </Link>
         </div>
         <Separator />
         <Suspense
           fallback={
-            <DataTableSkeleton columnCount={6} rowCount={10} />
+            <DataTableSkeleton columnCount={5} rowCount={10} />
           }
         >
-          <OrderListPage />
+          <ReportListPage />
         </Suspense>
       </div>
     </PageContainer>

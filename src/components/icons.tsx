@@ -32,7 +32,8 @@ import {
   IconLayoutKanban,
   IconBrandGithub,
   IconFlask2,
-  IconReceipt
+  IconReceipt,
+  IconNotification
 } from '@tabler/icons-react';
 
 export type Icon = React.ComponentType<IconProps>;
@@ -71,4 +72,5 @@ export const Icons = {
   check: IconCheck,
   flask: IconFlask2,
   invoice: IconReceipt,
+  notifyAdmin: IconNotification
 };

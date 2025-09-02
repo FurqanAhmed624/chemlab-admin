@@ -51,8 +51,15 @@ export const navItems: NavItem[] = [
     shortcut: ['w', 'w'],
     isActive: false,
     items: []
+  },
+  {
+    title: 'Chemical Reports',
+    url: '/dashboard/reports',
+    icon: 'notifyAdmin',
+    shortcut: ['w', 'w'],
+    isActive: false,
+    items: [],
   }
-
   // All other items are commented out or removed.
 ];
 

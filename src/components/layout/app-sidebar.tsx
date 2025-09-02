@@ -47,6 +47,13 @@ import { usePathname, useRouter } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
 import { OrgSwitcher } from '../org-switcher';
+import { useQuery } from '@apollo/client';
+import {
+  PENDING_REPORTS_COUNT_QUERY,
+  PendingReportsCountData
+} from '@/features/reports/graphql/queries';
+import { navItems as staticNavItems } from '@/constants/data';
+import { useState } from 'react';
 
 export const company = {
   name: 'Acme Inc',
@@ -74,6 +81,33 @@ export default function AppSidebar() {
   const { isOpen } = useMediaQuery();
   const router = useRouter();
   // REMOVED: const { user } = useUser();
+
+  const [navItems, setNavItems] = useState(staticNavItems);
+
+  const { data: countData } = useQuery<PendingReportsCountData>(
+    PENDING_REPORTS_COUNT_QUERY,
+    {
+      // Optional: Refetch on window focus or set a polling interval if you want it to be near real-time
+      // pollInterval: 30000, // e.g., refetch every 30 seconds
+    }
+  );
+
+  // --- NEW: useEffect to update the nav items when the count data arrives ---
+  React.useEffect(() => {
+    if (countData && countData.pendingChemicalReportsCount !== undefined) {
+      const count = countData.pendingChemicalReportsCount;
+
+      // Create a new array with the updated badge count
+      const updatedNavItems = staticNavItems.map((item) => {
+        if (item.title === 'Chemical Reports') {
+          return { ...item, badgeCount: count };
+        }
+        return item;
+      });
+
+      setNavItems(updatedNavItems);
+    }
+  }, [countData]);
 
   const handleSwitchTenant = (_tenantId: string) => {
     // Tenant switching functionality would be implemented here
@@ -146,6 +180,11 @@ export default function AppSidebar() {
                     <Link href={item.url}>
                       <Icon />
                       <span>{item.title}</span>
+                      {item.badgeCount && item.badgeCount > 0 && (
+                        <span className='ml-auto inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-medium text-white'>
+                          {item.badgeCount}
+                        </span>
+                      )}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
